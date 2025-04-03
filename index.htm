@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Tech Care</title>
+        <link rel="stylesheet" href="input.css"/>
+        <link rel="stylesheet" href="output.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body class="bg-[#F6F7F8] h-screen">
+        <header class="wrapper py-5">
+            <nav class="bg-white p-5 rounded-full gap-5 flex  items-center justify-between" >
+                <div class="w-[100px] md:w-[150px] ">
+                    <img class="w-full h-full object-cover" src="img/TestLogo.png" alt="">
+                </div>
+                <menu class="hidden lg:flex items-center justify-evenly gap-12">
+                    <li class="text-[17px] p-3 rounded-4xl bg-[#01F0D0] cursor-pointer"><i class="fa-solid fa-house"></i> Overview</li>
+                    <li class="text-[17px] p-3 rounded-4xl hover:bg-[#01F0D0] cursor-pointer"><i class="fa-solid fa-users"></i> Patients</li>
+                    <li class="text-[17px] p-3 rounded-4xl hover:bg-[#01F0D0] cursor-pointer"><i class="fa-solid fa-calendar-week"></i> Schedule</li>
+                    <li class="text-[17px] p-3 rounded-4xl hover:bg-[#01F0D0] cursor-pointer"><i class="fa-solid fa-envelope"></i> Message</li>
+                    <li class="text-[17px] p-3 rounded-4xl hover:bg-[#01F0D0] cursor-pointer"><i class="fa-solid fa-money-bill-transfer"></i> Transactions</li>
+                </menu>
+                <div class="flex items-center gap-4">
+                    <div>
+                        <img src="img/doctor-mini-img.png" alt="">
+                    </div>
+                    <div class="hidden sm:block">
+                        <p class="">Dr.Jose Simmons</p>
+                        <span class="text-[14px] text-[#707070]">General Practitoner</span>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="wrapper">
+            <div class="flex flex-col md:flex-row gap-3">
+                <div class="flex flex-col w-full md:w-[20%] h-screen bg-white p-3 rounded-2xl">
+                    <div class="flex w-full items-center justify-between ">
+                        <h2 id="pasientH2">Patients</h2>
+                        <input type="text" id="input" class="hidden w-[130px] border-1 outline-0 border-[#adadad] py-1 px-3 rounded-xl"/>
+                        <div class="flex items-center gap-3">
+                            <i onclick="getSearchInput()" class="fa-solid fa-magnifying-glass"></i>
+                            <select id="ranking" class="outline-0">
+                                <option value="a-z">A - Z</option> 
+                                <option value="z-a">Z - A</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div id="pasients" class="py-3 h-full  overflow-auto">
+                        
+                    </div>
+                </div>
+                <div class="md:w-[57%] h-max w-full">
+                    <div class="pb-3">
+                        <div class="bg-white p-3 rounded-2xl w-full">
+                            <h2 class="text-2xl font-bold px-2 pb-3">Diagnostic history</h2>
+                        <div class="flex flex-col p-3 rounded-2xl bg-[#F4F0FE]">
+                            <h2 class="text-[18px] font-bold">Blood pleasure</h2>
+                            <div class="flex">
+                                <div class="w-[75%] py-2">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                <div class="w-[25%] flex flex-col justify-center">
+                                    <div class="pb-4 border-b-1 border-[#bbbbbb]">
+                                        <h2 class="flex items-center gap-1"><i class="fa-solid fa-circle text-[#E66FD2]"></i><span class="font-bold">Systolic</span></h2>
+                                        <h2 id="systolic" class="text-xl font-bold py-2">147</h2>
+                                        <p id="systolicStatue" class="text-[15px] text-[gray]">Higher than Average</p>
+                                    </div>
+                                    <div class="pt-4">
+                                        <h2 class="flex items-center gap-1"><i class="fa-solid fa-circle text-[#8C6FE6]"></i><span class="font-bold">Diastolic</span></h2>
+                                        <h2 id="diastolic" class="text-xl font-bold py-2">88</h2>
+                                        <p id="diastolicStatue" class="text-[15px] text-[gray]">Normal</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-5 w-full flex flex-col md:flex-row gap-3 items-center justify-between">
+                            <div class="infos w-full md:w-[30%] flex flex-col items-center md:items-start bg-[#E0F3FA] p-4 rounded-2xl">
+                                <img src="https://techcarepatients.netlify.app/img/respiratory%20rate.svg" alt="">
+                                <p class="font-bold pt-2">Respiratory Rate</p>
+                                <h2 class="text-[30px] font-bold"><span id="resRate">22</span> bpm</h2>
+                                <span id="resLevel">Normal</span>
+                            </div>
+                            <div class="infos w-full md:w-[30%] flex flex-col items-center md:items-start bg-[#FFE6E9] p-4 rounded-2xl">
+                                <img src="https://techcarepatients.netlify.app/img/temperature.svg" alt="">
+                                <p class="font-bold pt-2">Temperature</p>
+                                <h2 class="text-[30px] font-bold"><span id="temp">100.1</span> °F</h2>
+                                <span id="tempLevel">Normal</span>
+                            </div>
+                            <div class="infos w-full md:w-[30%] flex flex-col items-center md:items-start bg-[#FFE6F1] p-4 rounded-2xl">
+                                <img src="https://techcarepatients.netlify.app/img/HeartBPM.svg" alt="">
+                                <p class="font-bold pt-2">Heart Rate</p>
+                                <h2 class="text-[30px] font-bold"><span id="heartRate">75</span> bpm</h2>
+                                <span>Normal</span>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="pt-3">
+                            <div class="bg-white  rounded-xl py-5 px-4">
+                                <div class="flex justify-between bg-[#F6F7F8] px-3 rounded-full py-3">
+                                    <p class="font-medium">Problem/Diagnosis</p>
+                                    <p class="font-medium">Description</p>
+                                    <p class="font-medium">Status</p>
+                                </div>
+                                <div id="diagnosticList" class="h-[200px] overflow-y-scroll">
+                                    <div class="flex justify-between text-center my-4 px-2">
+                                        <p>Allergies</p>
+                                        <p>The immune system's reaction to foreign substances that are typically not harmful.</p>
+                                        <p>Under observation</p>
+                                    </div>
+                                    <hr>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col h-max w-full md:w-[23%]  ">
+                    <div class="bg-white p-3 rounded-2xl">
+                        <div id="pasientInfo" class="flex flex-col items-center gap-3">
+                            <div class="w-[200px] h-[200px]">
+                                <img class="w-full h-full object-cover" src="https://fedskillstest.ct.digital/1.png" alt="">
+                            </div>
+                            <h2 class="text-2xl font-bold py-2">Emily Williams</h2>
+                            <div class="flex w-full gap-4 flex-col items-start pl-2">
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <img src="img/BirthIcon.png" alt="">
+                                    </div>
+                                    <div>
+                                        <h2 class="">Date of birth</h2>
+                                        <span class=" ">2006-05-06</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <img src="img/FemaleIcon.png" alt="">
+                                    </div>
+                                    <div>
+                                        <h2 class="">Gender</h2>
+                                        <span class=" ">Female</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <img src="img/PhoneIcon.png" alt="">
+                                    </div>
+                                    <div>
+                                        <h2 class="">Contact Info.</h2>
+                                        <span class=" ">(711) 984-6696</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <img src="img/PhoneIcon.png" alt="">
+                                    </div>
+                                    <div>
+                                        <h2 class="">Emergency contact</h2>
+                                        <span class=" ">(680) 653-9512</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <img src="img/InsuranceIcon.png" alt="">
+                                    </div>
+                                    <div>
+                                        <h2 class="">Insurance Provider</h2>
+                                        <span class=" ">Premier Auto Corporation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 w-full">
+                                <button class="rounded-full py-3 bg-[#01F0D0] w-full">Show All Information</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl mt-3">
+                        <h2 class="text-2xl font-bold">Lab Results</h2>
+                        <div class="p-2">
+                            <ul id="labResault" class="w-full h-[100px] overflow-auto">
+                                <li class="flex items-center justify-between py-2 cursor-pointer">
+                                    <span> Blood Count  Complete(CBC)</span>
+                                    <i class="fa-solid fa-download"></i>
+                                </li>
+                                <li class="flex items-center justify-between py-2 cursor-pointer">
+                                    <span>Complete  Count (CBC)</span>
+                                    <i class="fa-solid fa-download"></i>
+                                </li>
+                                <li class="flex items-center justify-between py-2 cursor-pointer">
+                                    <span> Blood Count (CBC)</span>
+                                    <i class="fa-solid fa-download"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
